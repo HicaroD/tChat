@@ -1,4 +1,4 @@
-# TChat
+# tChat
 A terminal Twitch Chat written in Python
 
 ## Installation
