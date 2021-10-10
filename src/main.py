@@ -10,13 +10,14 @@ TODO:
 
 load_dotenv()
 
-ADDRESS = "irc.chat.twitch.tv"
-PORT = 6667
-OAUTH_TOKEN = os.getenv("OAUTH_TOKEN")
 
 class TwitchChat:
+    ADDRESS = "irc.chat.twitch.tv"
+    PORT = 6667
+    OAUTH_TOKEN = os.getenv("OAUTH_TOKEN")
+
     def __init__(self, nickname : str, channel : str):
-        self.client = Client(ADDRESS, PORT)
+        self.client = Client(TwitchChat.ADDRESS, TwitchChat.PORT)
         self.nickname = nickname
         self.channel = "#" + channel
 
@@ -24,7 +25,7 @@ class TwitchChat:
         self.client.join(channel_name)
 
     def send_credentials_to_server(self):
-        self.client.send_oauth_token_to_server(OAUTH_TOKEN)
+        self.client.send_oauth_token_to_server(TwitchChat.OAUTH_TOKEN)
         self.client.send_nick_to_server(self.nickname)
 
     def run(self):
