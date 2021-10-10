@@ -1,5 +1,6 @@
 from irc_connection import Client
 from dotenv import load_dotenv
+from parser import Parser
 import os
 
 """
@@ -21,6 +22,7 @@ class TwitchChat:
         self.client = Client(TwitchChat.ADDRESS, TwitchChat.PORT)
         self.nickname = nickname
         self.channel = "#" + channel
+        self.parser = Parser()
 
     def join_channel(self, channel_name : str):
         self.client.join(channel_name)
@@ -36,8 +38,13 @@ class TwitchChat:
 
         while 1:
             unparsed_twitch_chat = self.client.get_data_from_irc_server_response().decode()
-            print(unparsed_twitch_chat)
-            if "PING" in unparsed_twitch_chat:
+
+            if "PRIVMSG" in unparsed_twitch_chat:
+                user, message = self.parser.parse_message(unparsed_twitch_chat)
+                print(user, message)
+
+            elif "PING" in unparsed_twitch_chat:
+                print("PINGING SERVER")
                 self.client.send_pong_to_server()
 
 
