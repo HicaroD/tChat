@@ -4,12 +4,13 @@ import os
 
 """
 TODO:
-    [] Connect to IRC server
-    [] Print chat on terminal
+    [X] Connect to IRC server
+    [X] Print chat on terminal
+    [] Parse IRC message (separate all components, such as nickname, type, message)
+    [] Customize parsed IRC message (colors and more)
 """
 
 load_dotenv()
-
 
 class TwitchChat:
     ADDRESS = "irc.chat.twitch.tv"
@@ -36,7 +37,6 @@ class TwitchChat:
         while 1:
             unparsed_twitch_chat = self.client.get_data_from_irc_server_response().decode()
             print(unparsed_twitch_chat)
-
             if "PING" in unparsed_twitch_chat:
                 self.client.send_pong_to_server()
 
