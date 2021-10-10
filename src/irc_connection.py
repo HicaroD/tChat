@@ -1,8 +1,9 @@
 import socket
 
-BUFFER_SIZE = 2040
 
 class Client:
+    BUFFER_SIZE = 2040
+
     def __init__(self, address : str, port : int):
         self.address = address
         self.port = port
@@ -24,7 +25,7 @@ class Client:
         self.send_command_to_server("JOIN", channel_name)
 
     def get_data_from_irc_server_response(self):
-        return self.irc.recv(BUFFER_SIZE)
+        return self.irc.recv(Client.BUFFER_SIZE)
 
     def send_pong_to_server(self):
         self.send_command_to_server("PONG", ":tmi.twitch.tv")
