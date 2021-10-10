@@ -33,11 +33,11 @@ class TwitchChat:
         self.join_channel(self.channel)
 
         while 1:
-            unparsed_twitch_chat = self.client.get_data_from_irc_server().decode()
+            unparsed_twitch_chat = self.client.get_data_from_irc_server_response().decode()
             print(unparsed_twitch_chat)
 
             if "PING" in unparsed_twitch_chat:
-                self.client.pong_to_server()
+                self.client.send_pong_to_server()
 
 
 def main():
