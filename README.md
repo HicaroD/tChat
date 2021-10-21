@@ -2,7 +2,7 @@
 **WARNING: This project is a work in progress!**
 
 A terminal Twitch Chat written in Python
-![EXAMPLE IMAGE](img/Captura de tela_2021-10-21_20-17-53.png)
+<img src="./img/Captura de tela_2021-10-21_20-17-53.png">
 
 *That's WARDELL's chat, I'm not responsible for any kind of message, I just printed randomly to show my program working!*
 
