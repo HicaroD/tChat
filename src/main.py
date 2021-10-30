@@ -1,3 +1,4 @@
+from command_line_argument_parser import UserArgumentParser
 from irc_connection import Client
 from dotenv import load_dotenv
 from parser import Parser
@@ -49,7 +50,12 @@ class TwitchChat:
 
 
 def main():
-    chat = TwitchChat("hicaro____", "gaules")
-    chat.run()
+    user_argument_parser = UserArgumentParser()
+    args = user_argument_parser.parse_all_arguments()
 
+    nickname = getattr(args, "nickname"))
+    channel_name = getattr(args, "channel"))
+
+    chat = TwitchChat(nickname, channel)
+    chat.run()
 main()
