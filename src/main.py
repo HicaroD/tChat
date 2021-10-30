@@ -5,16 +5,6 @@ from customizer import Customizer
 from colorama import Style
 import os
 
-"""
-TODO:
-    [X] Print chat on terminal
-    [X] Parse IRC message (separate all components, such as nickname, type, message).
-    [X] Customize parsed IRC message (colors and more for the username and message).
-    [] Add support to simple emojis (Unicode).
-    [] Insert nickname and channel name with command-line arguments.
-    [] Handle cases when nickame / channel name doesn't exist or just failed for some reason.
-"""
-
 load_dotenv()
 
 class TwitchChat:
@@ -36,6 +26,11 @@ class TwitchChat:
         self.client.send_oauth_token_to_server(TwitchChat.OAUTH_TOKEN)
         self.client.send_nick_to_server(self.nickname)
 
+    def make_beautiful_printing(self, color : str, user : str, message : str):
+        print(f"{color}[{user}]", end = " ")
+        print(Style.RESET_ALL, end = " ")
+        print(f"< {message}")
+
     def run(self):
         self.client.connect()
         self.send_credentials_to_server()
@@ -46,15 +41,8 @@ class TwitchChat:
 
             if "PRIVMSG" in unparsed_twitch_chat:
                 user_text_color = self.customizer.select_color_for_text()
-
                 user, message = self.parser.parse_message(unparsed_twitch_chat)
-
-                if str(message).endswith("\r\n"):
-                    message = str(message)[:-4]
-
-                print(f"{user_text_color}[{user}]", end = " ")
-                print(Style.RESET_ALL, end = " ")
-                print(f"< {message} >")
+                self.make_beautiful_printing(user_text_color, user, message)
 
             elif "PING" in unparsed_twitch_chat:
                 self.client.send_pong_to_server()
