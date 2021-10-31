@@ -15,12 +15,18 @@ A terminal Twitch Chat written in Python
 
 2. Install all packages needed to run everything properly
 
-    You can use either pip3 or pip (it depends on the PIP version that you have in your machine)
+    You can use either pip3 or pip (it depends on the PIP version that you have installed in your machine)
     ```bash
     cd tChat/ && pip3 install -r requirements.txt
     ```
 
 ## Usage
+    You can run the program by typing: 
+    ```bash
+    python3 main.py -n hicaro____ -ch shroud
+    ```
+    -n is the flag for your Twitch nickname and -ch is for the channel name.
+
 
 ## License
 [MIT](./LICENSE)
