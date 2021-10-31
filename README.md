@@ -21,12 +21,9 @@ A terminal Twitch Chat written in Python
     ```
 
 ## Usage
-    You can run the program by typing: 
+    You can run the program by typing
     ```bash
     python3 main.py -n hicaro____ -ch shroud
     ```
-    -n is the flag for your Twitch nickname and -ch is for the channel name.
-
-
 ## License
 [MIT](./LICENSE)
