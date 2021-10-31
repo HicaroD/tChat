@@ -53,9 +53,9 @@ def main():
     user_argument_parser = UserArgumentParser()
     args = user_argument_parser.parse_all_arguments()
 
-    nickname = getattr(args, "nickname"))
-    channel_name = getattr(args, "channel"))
+    nickname = getattr(args, "nickname")
+    channel_name = getattr(args, "channel")
 
-    chat = TwitchChat(nickname, channel)
+    chat = TwitchChat(nickname, channel_name)
     chat.run()
 main()
