@@ -2,3 +2,4 @@ src/.env
 src/env
 src/__pycache__
 notes.txt
+.cfg
