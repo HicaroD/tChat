@@ -3,7 +3,6 @@ from irc_connection import Client
 from dotenv import load_dotenv
 from parser import Parser
 from customizer import Customizer
-from colorama import Style
 from config import Configuration
 import os
 
@@ -40,8 +39,7 @@ class TwitchChat:
         self.client.send_nick_to_server(self.nickname)
 
     def make_beautiful_printing(self, color : str, user : str, message : str):
-        print(f"{color}[{user}]", end = " ")
-        print(Style.RESET_ALL, end = " ")
+        print(f"{color}[{user}]{self.customizer.RESET_ANSI_CODE}", end = " ")
         print(f"|| {message}")
 
     def run(self):
