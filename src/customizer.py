@@ -1,16 +1,13 @@
-import colorama
-from colorama import Fore
 import random
 
 class Customizer:
-    def __init__(self):
-        colorama.init()
+    RESET_ANSI_CODE = "\u001b[0m"
 
-    def select_randomly(self, options : list):
-        return random.choice(options)
+    def select_random_color_number(self):
+        return random.randint(30, 37)
 
     def select_color_for_text(self):
         """Select any color from colorama.Fore"""
-        colors = [Fore.BLACK, Fore.RED, Fore.GREEN, Fore.MAGENTA, Fore.YELLOW,
-                  Fore.CYAN, Fore.WHITE, Fore.BLUE]
-        return self.select_randomly(colors)
+        random_color_number = self.select_random_color_number()
+        color = f"\u001b[{random_color_number};1m"
+        return color
