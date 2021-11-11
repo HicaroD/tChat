@@ -9,6 +9,17 @@ import os
 
 load_dotenv()
 
+def receive_command_line_arguments():
+    user_argument_parser = UserArgumentParser()
+    return user_argument_parser.parse_all_arguments()
+
+def parse_args():
+    args = receive_command_line_arguments()
+    nickname = getattr(args, "nickname")
+    channel_name = getattr(args, "channel")
+    oauth_token = open(".cfg", "r").read()
+    return nickname, channel_name, oauth_token
+
 class TwitchChat:
     ADDRESS = "irc.chat.twitch.tv"
     PORT = 6667
@@ -31,7 +42,7 @@ class TwitchChat:
     def make_beautiful_printing(self, color : str, user : str, message : str):
         print(f"{color}[{user}]", end = " ")
         print(Style.RESET_ALL, end = " ")
-        print(f"< {message}")
+        print(f"|| {message}")
 
     def run(self):
         self.client.connect()
@@ -52,15 +63,10 @@ class TwitchChat:
 def main():
     configuration = Configuration()
 
-    user_argument_parser = UserArgumentParser()
-    args = user_argument_parser.parse_all_arguments()
-
     if not configuration.config_file_exists():
         configuration.make_config_file()
 
-    nickname = getattr(args, "nickname")
-    channel_name = getattr(args, "channel")
-    oauth_token = open(".cfg", "r").read()
+    nickname, channel_name, oauth_token = parse_args()
 
     chat = TwitchChat(nickname, channel_name, oauth_token)
     chat.run()
