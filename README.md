@@ -1,10 +1,10 @@
 # tChat
 **WARNING: This project is a work in progress!**
 
-A terminal Twitch Chat written in Python
-<img src="./img/new_version.png">
-
-*That's Gaules's chat, I'm not responsible for any kind of message, I just printed randomly to show my program working!*
+<div align="center">
+ <img src="./img/new_version.png">
+ A terminal Twitch Chat written in Python
+</div>
 
 ## Installation
 
