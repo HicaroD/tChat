@@ -23,9 +23,9 @@ cd tChat/ && pip3 install -r requirements.txt
 ## Usage
 You can run the program by typing
 ```bash
-python3 main.py -n hicaro____ -ch shroud
+python3 main.py -n <your nickname> -ch <channel name you want to join>
 ```
-You can use -n for your Twitch username and -ch for the channel name you want to join!
+You can use -n for your Twitch username and -ch for the channel name you want to join! Remember to do that without "<>"
 
 **IMPORTANT**: If it's the first you are using the program, you will need to insert a OAuth token to join the chat. Use this website to get your oauth token: [Twitch Chat OAuth Password Generator](https://twitchapps.com/tmi/)
 
