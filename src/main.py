@@ -48,14 +48,14 @@ class TwitchChat:
         self.join_channel(self.channel)
 
         while 1:
-            unparsed_twitch_chat = self.client.get_data_from_irc_server_response().decode()
+            unparsed_twitch_chat_message = self.client.get_data_from_irc_server_response().decode()
 
-            if "PRIVMSG" in unparsed_twitch_chat:
+            if "PRIVMSG" in unparsed_twitch_chat_message:
                 user_text_color = self.customizer.select_color_for_text()
-                user, message = self.parser.parse_message(unparsed_twitch_chat)
+                user, message = self.parser.parse_message(unparsed_twitch_chat_message)
                 self.make_beautiful_printing(user_text_color, user, message)
 
-            elif "PING" in unparsed_twitch_chat:
+            elif "PING" in unparsed_twitch_chat_message:
                 self.client.send_pong_to_server()
 
 def main():
