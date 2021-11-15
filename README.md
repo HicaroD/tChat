@@ -3,7 +3,7 @@
 
 <div align="center">
  <img src="./img/new_version.png">
- <p>A terminal Twitch Chat written in Python</p>
+ <p> *A terminal Twitch Chat written in Python* </p>
 </div>
 
 ## Installation
