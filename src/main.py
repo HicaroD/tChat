@@ -1,7 +1,7 @@
 from command_line_argument_parser import UserArgumentParser
 from irc_connection import Client
 from dotenv import load_dotenv
-from parser import Parser
+from twitch_message_parser import Parser
 from customizer import Customizer
 from config import Configuration
 import asyncio
@@ -41,7 +41,7 @@ class TwitchChat:
 
     def make_beautiful_printing(self, color : str, user : str, message : str):
         print(f"{color}[{user}]{self.customizer.RESET_ANSI_CODE}", end = " ")
-        print(f"|| {message}")
+        print(f" {message}")
 
     async def run(self):
         await self.client.connect()
@@ -50,14 +50,14 @@ class TwitchChat:
 
         while 1:
             unparsed_twitch_chat_message = await self.client.get_data_from_irc_server_response()
-            unparsed_twitch_chat_message = unparsed_twitch_chat_message.decode() # Decoding the bytes from the socket buffer
+            decoded_twitch_chat_messages = unparsed_twitch_chat_message.decode().split("\n")[0] # Decoding the bytes from the socket buffer
 
-            if "PRIVMSG" in unparsed_twitch_chat_message:
+            if "PRIVMSG" in decoded_twitch_chat_messages:
                 user_text_color = self.customizer.select_color_for_text()
-                user, message = self.parser.parse_message(unparsed_twitch_chat_message)
+                user, message = self.parser.parse_message(decoded_twitch_chat_messages)
                 self.make_beautiful_printing(user_text_color, user, message)
 
-            elif "PING" in unparsed_twitch_chat_message:
+            elif "PING" in decoded_twitch_chat_messages:
                 await self.client.send_pong_to_server()
 
 async def main():
