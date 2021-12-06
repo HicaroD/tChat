@@ -1,13 +1,10 @@
 from command_line_argument_parser import UserArgumentParser
 from irc_connection import Client
-from dotenv import load_dotenv
 from twitch_message_parser import Parser
 from customizer import Customizer
 from config import Configuration
 import asyncio
 import os
-
-load_dotenv()
 
 def receive_command_line_arguments():
     user_argument_parser = UserArgumentParser()
@@ -41,7 +38,7 @@ class TwitchChat:
 
     def make_beautiful_printing(self, color : str, user : str, message : str):
         print(f"{color}[{user}]{self.customizer.RESET_ANSI_CODE}", end = " ")
-        print(f" {message}")
+        print(f"{message}")
 
     async def run(self):
         await self.client.connect()
