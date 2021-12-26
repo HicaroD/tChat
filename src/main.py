@@ -1,7 +1,7 @@
-from command_line_argument_parser import UserArgumentParser
+from parser.command_line_argument_parser import UserArgumentParser
 from irc_connection import Client
-from twitch_message_parser import Parser
-from customizer import Customizer
+from parser.twitch_message_parser import Parser
+from customizer.customizer import Customizer
 from config import Configuration
 import asyncio
 import os
