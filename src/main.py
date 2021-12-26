@@ -49,10 +49,14 @@ class TwitchChat:
             unparsed_twitch_chat_message = await self.client.get_data_from_irc_server_response()
             decoded_twitch_chat_messages = unparsed_twitch_chat_message.decode().split("\n")[0] # Decoding the bytes from the socket buffer
 
+            user_text_color = self.customizer.select_color_for_text()
+            user, message = self.parser.parse_message(decoded_twitch_chat_messages)
+
             if "PRIVMSG" in decoded_twitch_chat_messages:
-                user_text_color = self.customizer.select_color_for_text()
-                user, message = self.parser.parse_message(decoded_twitch_chat_messages)
                 self.make_beautiful_printing(user_text_color, user, message)
+
+            elif "You are in a maze of twisty passages, all alike." in str(unparsed_twitch_chat_message):
+                self.make_beautiful_printing(user_text_color, "You", "are connected to chat")
 
             elif "PING" in decoded_twitch_chat_messages:
                 await self.client.send_pong_to_server()
