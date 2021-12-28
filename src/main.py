@@ -2,7 +2,8 @@ from chat_parser.command_line_argument_parser import UserArgumentParser
 from irc_connection import Client
 from chat_parser.twitch_message_parser import Parser
 from customizer.customizer import Customizer
-from config import Configuration
+from config.config import Configuration
+from configparser import ConfigParser
 import asyncio
 import os
 
@@ -12,35 +13,41 @@ def receive_command_line_arguments():
     return user_argument_parser.parse_all_arguments()
 
 
-def parse_args():
+def get_channel_name_from_command_line():
     args = receive_command_line_arguments()
-    nickname = getattr(args, "nickname")
     channel_name = getattr(args, "channel")
-    oauth_token = open(".cfg", "r").read()
-    return nickname, channel_name, oauth_token
+    return channel_name
+
+
+class User:
+    def __init__(self):
+        self.config = ConfigParser()
+        self.config.read("config.ini")
+
+        self.nickname = self.config["IRC"]["nickname"]
+        self.oauth_token = self.config["IRC"]["oauth_token"]
 
 
 class TwitchChat:
     ADDRESS = "irc.chat.twitch.tv"
     PORT = 6667
 
-    def __init__(self, nickname: str, channel: str, oauth_token: str):
+    def __init__(self, user: User, channel: str):
         self.client = Client(TwitchChat.ADDRESS, TwitchChat.PORT)
-        self.nickname = nickname
+        self.user = user
         self.channel = "#" + channel
         self.parser = Parser()
         self.customizer = Customizer()
-        self.OAUTH_TOKEN = oauth_token
 
-    async def join_channel(self, channel_name: str):
-        await self.client.join(channel_name)
+    async def join_channel(self):
+        await self.client.join(self.channel)
 
     async def send_credentials_to_server(self):
-        await self.client.send_oauth_token_to_server(self.OAUTH_TOKEN)
-        await self.client.send_nick_to_server(self.nickname)
+        await self.client.send_oauth_token_to_server(self.user.oauth_token)
+        await self.client.send_nick_to_server(self.user.nickname)
 
-    def make_beautiful_printing(self, color: str, user: str, message: str):
-        print(f"{color}[{user}]{self.customizer.RESET_ANSI_CODE}", end=" ")
+    def make_beautiful_printing(self, color: str, nickname: str, message: str):
+        print(f"{color}[{nickname}]{self.customizer.RESET_ANSI_CODE}", end=" ")
         print(f"{message}")
 
     def is_user_message(self, message):
@@ -56,7 +63,7 @@ class TwitchChat:
         try:
             await self.client.connect()
             await self.send_credentials_to_server()
-            await self.join_channel(self.channel)
+            await self.join_channel()
 
             while 1:
                 unparsed_twitch_chat_message = (
@@ -64,7 +71,7 @@ class TwitchChat:
                 )
                 decoded_twitch_chat_messages = (
                     unparsed_twitch_chat_message.decode().split("\n")[0]
-                )  # Decoding the bytes from the socket buffer
+                )
 
                 user_text_color = self.customizer.select_color_for_text()
                 user, message = self.parser.parse_message(decoded_twitch_chat_messages)
@@ -92,9 +99,10 @@ async def main():
     if not configuration.config_file_exists():
         configuration.make_config_file()
 
-    nickname, channel_name, oauth_token = parse_args()
+    channel_name = get_channel_name_from_command_line()
+    user = User()
 
-    chat = TwitchChat(nickname, channel_name, oauth_token)
+    chat = TwitchChat(user, channel_name)
     await chat.run()
 
 
