@@ -1,5 +1,6 @@
 import random
 
+
 class Customizer:
     RESET_ANSI_CODE = "\u001b[0m"
 
