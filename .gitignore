@@ -1,7 +1,10 @@
 src/.env
 src/env
-src/__pycache__
 notes.txt
-.cfg
+
+src/config.ini
+
+src/__pycache__
 src/chat_parser/__pycache__/*
 src/customizer/__pycache__/*
+src/config/__pycache__
