@@ -66,13 +66,13 @@ class TwitchChat:
                     self.make_beautiful_printing(user_text_color, user, message)
 
                 elif self.is_connection_message(unparsed_twitch_chat_message):
-                    self.make_beautiful_printing(user_text_color, "You", "are connected to chat")
+                    self.make_beautiful_printing(user_text_color, "You", f"are connected to {self.channel[1::]}'s chat")
 
-                elif self.is_ping_message_from_server(unparsed_twitch_chat_message):
+                elif self.is_ping_message_from_server(decoded_twitch_chat_messages):
                     await self.client.send_pong_to_server()
 
         except KeyboardInterrupt:
-            print("You are disconnected!")
+            self.make_beautiful_printing(user_text_color, "You", "are disconnected")
 
 
 async def main():
