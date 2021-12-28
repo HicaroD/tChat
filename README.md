@@ -1,6 +1,8 @@
 # tChat
 **WARNING: This project is a work in progress!**
 
+The first "t" stands for "Twitch" or "Terminal"? I don't know, maybe both
+
 <div align="center">
  <img src="./img/new_version.png">
  <p> <i> A terminal Twitch Chat written in Python</i> </p>
@@ -14,13 +16,17 @@ git clone https://github.com/HicaroD/tChat.git
 ```
 
 ## Usage
+
 You can run the program by typing
 ```bash
-python3 main.py -n <your nickname> -ch <channel name you want to join>
+python3 main.py -ch <channel name you want to join>
 ```
-You can use -n for your Twitch username and -ch for the channel name you want to join! Remember to do that without "<>"
 
-**IMPORTANT**: If it's the first you are using the program, you will need to insert a OAuth token to join the chat. Use this website to get your oauth token: [Twitch Chat OAuth Password Generator](https://twitchapps.com/tmi/)
+For example: `python3 main.py -ch shroud` where `shroud` is a Twitch streamer and we want to join his chat using tChat.
+
+If it is your first time, you probably don't have a configuration file, therefore the program will ask you two things: your Twitch nickname and your OAuth token.
+
+**IMPORTANT**: Use this website to get your oauth token: [Twitch Chat OAuth Password Generator](https://twitchapps.com/tmi/)
 
 ## Troubleshooting
 
