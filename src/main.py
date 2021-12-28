@@ -40,26 +40,40 @@ class TwitchChat:
         print(f"{color}[{user}]{self.customizer.RESET_ANSI_CODE}", end = " ")
         print(f"{message}")
 
+    def is_user_message(self, message):
+        return "PRIVMSG" in message
+
+    def is_connection_message(self, message):
+        return "You are in a maze of twisty passages, all alike." in str(message)
+
+    def is_ping_message_from_server(self, message):
+        return "PING" in message
+
     async def run(self):
-        await self.client.connect()
-        await self.send_credentials_to_server()
-        await self.join_channel(self.channel)
+        try:
+            await self.client.connect()
+            await self.send_credentials_to_server()
+            await self.join_channel(self.channel)
 
-        while 1:
-            unparsed_twitch_chat_message = await self.client.get_data_from_irc_server_response()
-            decoded_twitch_chat_messages = unparsed_twitch_chat_message.decode().split("\n")[0] # Decoding the bytes from the socket buffer
+            while 1:
+                unparsed_twitch_chat_message = await self.client.get_data_from_irc_server_response()
+                decoded_twitch_chat_messages = unparsed_twitch_chat_message.decode().split("\n")[0] # Decoding the bytes from the socket buffer
 
-            user_text_color = self.customizer.select_color_for_text()
-            user, message = self.parser.parse_message(decoded_twitch_chat_messages)
+                user_text_color = self.customizer.select_color_for_text()
+                user, message = self.parser.parse_message(decoded_twitch_chat_messages)
 
-            if "PRIVMSG" in decoded_twitch_chat_messages:
-                self.make_beautiful_printing(user_text_color, user, message)
+                if self.is_user_message(decoded_twitch_chat_messages):
+                    self.make_beautiful_printing(user_text_color, user, message)
 
-            elif "You are in a maze of twisty passages, all alike." in str(unparsed_twitch_chat_message):
-                self.make_beautiful_printing(user_text_color, "You", "are connected to chat")
+                elif self.is_connection_message(unparsed_twitch_chat_message):
+                    self.make_beautiful_printing(user_text_color, "You", "are connected to chat")
 
-            elif "PING" in decoded_twitch_chat_messages:
-                await self.client.send_pong_to_server()
+                elif self.is_ping_message_from_server(unparsed_twitch_chat_message):
+                    await self.client.send_pong_to_server()
+
+        except KeyboardInterrupt:
+            print("You are disconnected!")
+
 
 async def main():
     configuration = Configuration()
