@@ -3,3 +3,5 @@ src/env
 src/__pycache__
 notes.txt
 .cfg
+src/chat_parser/__pycache__/*
+src/customizer/__pycache__/*
