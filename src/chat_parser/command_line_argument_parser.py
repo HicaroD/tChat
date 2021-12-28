@@ -10,15 +10,6 @@ class UserArgumentParser:
             epilog=f"In case of you don't know how to setup: {GITHUB_REPOSITORY_LINK}",
         )
 
-    def add_argument_for_nickname(self):
-        self.parser.add_argument(
-            "-n",
-            "--nickname",
-            type=str,
-            help="Your current nickname on Twitch",
-            required=True,
-        )
-
     def add_argument_for_channel_name(self):
         self.parser.add_argument(
             "-ch",
@@ -29,6 +20,5 @@ class UserArgumentParser:
         )
 
     def parse_all_arguments(self):
-        self.add_argument_for_nickname()
         self.add_argument_for_channel_name()
         return self.parser.parse_args()
