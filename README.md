@@ -1,7 +1,7 @@
 # tChat
 **WARNING: This project is a work in progress!**
 
-The first "t" stands for "Twitch" or "Terminal"? I don't know, maybe both
+Does the first "t" from tChat stands for "Twitch" or "Terminal"? I don't know, maybe both
 
 <div align="center">
  <img src="./img/new_version.png">
