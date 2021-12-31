@@ -17,9 +17,14 @@ git clone https://github.com/HicaroD/tChat.git
 
 ## Usage
 
-You can run the program by typing
+1. Go to the `tChat/tChat` folder where the main file is stored
 ```bash
-python3 main.py -ch <channel name you want to join>
+cd tChat/tChat/
+```
+
+2. Run the program
+```bash
+python3 main.py -ch <name of the channel you want to join>
 ```
 
 For example: `python3 main.py -ch shroud` where `shroud` is a Twitch streamer and we want to join his chat using tChat.
