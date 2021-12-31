@@ -4,7 +4,8 @@ notes.txt
 
 src/config.ini
 
-src/__pycache__
-src/chat_parser/__pycache__/*
-src/customizer/__pycache__/*
-src/config/__pycache__
+tChat/__pycache__
+tChat/chat_parser/__pycache__/*
+tChat/customizer/__pycache__/*
+tChat/config/__pycache__
+tests/__pycache__
