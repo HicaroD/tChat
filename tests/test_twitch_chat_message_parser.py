@@ -1,9 +1,9 @@
 import sys, os
 import unittest
 
-sys.path.insert(0, os.path.abspath(".."))
+sys.path.insert(0, os.path.abspath("../src/"))
 
-from tChat.chat_parser.twitch_message_parser import Parser
+from chat_parser.twitch_message_parser import Parser
 
 
 class TestTwitchChatParserMethods(unittest.TestCase):
