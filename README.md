@@ -17,9 +17,9 @@ git clone https://github.com/HicaroD/tChat.git
 
 ## Usage
 
-1. Go to the `tChat/tChat` folder where the main file is stored
+1. Go to the `tChat/src` folder where the main file is located
 ```bash
-cd tChat/tChat/
+cd tChat/src/
 ```
 
 2. Run the program
