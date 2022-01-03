@@ -2,7 +2,7 @@
 
 <div align="center">
  <img src="./img/new_version.png">
- <p> <i> A Twitch Chat user interface written in Python </i> </p>
+ <p> <i> A Twitch chat user interface written in Python </i> </p>
 </div>
 
 ## Installation
