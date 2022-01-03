@@ -98,8 +98,8 @@ async def main():
     if not configuration.config_file_exists():
         configuration.make_config_file()
 
-    channel_name = get_channel_name_from_command_line()
     user = User()
+    channel_name = get_channel_name_from_command_line()
 
     chat = TwitchChat(user, channel_name)
     await chat.run()
