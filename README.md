@@ -5,7 +5,7 @@ Does the first "t" from tChat stands for "Twitch" or "Terminal"? I don't know, m
 
 <div align="center">
  <img src="./img/new_version.png">
- <p> <i> A terminal Twitch Chat written in Python</i> </p>
+ <p> <i> A Twitch Chat user interface written in Python </i> </p>
 </div>
 
 ## Installation
