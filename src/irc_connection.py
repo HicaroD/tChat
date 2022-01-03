@@ -2,6 +2,20 @@ import socket
 import asyncio
 
 
+def is_internet_working():
+    import socket
+
+    try:
+        sock = socket.create_connection(("www.google.com.br", 80))
+        if socket is not None:
+            sock.close()
+        return True
+
+    except OSError:
+        pass
+
+    return False
+
 class Client:
     BUFFER_SIZE = 2040
 
@@ -11,7 +25,12 @@ class Client:
         self.irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     async def connect(self):
-        self.irc.connect((self.address, self.port))
+        if is_internet_working():
+            self.irc.connect((self.address, self.port))
+
+        else:
+            print("Internet is not working properly.")
+            exit()
 
     async def send_command_to_server(self, command: str, message: str):
         self.irc.send(f"{command} {message}\r\n".encode())
