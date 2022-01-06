@@ -2,7 +2,7 @@ from chat_parser.command_line_argument_parser import UserArgumentParser
 from irc_connection import Client
 from chat_parser.twitch_message_parser import Parser
 from customizer.customizer import Customizer
-from config.config import Configuration
+from config.config import Configuration, config_file_exists
 from configparser import ConfigParser
 import asyncio
 
@@ -98,7 +98,7 @@ class TwitchChat:
 async def main():
     configuration = Configuration()
 
-    if not configuration.config_file_exists():
+    if not config_file_exists():
         configuration.make_config_file()
 
     user = User()
