@@ -1,5 +1,9 @@
-import os
 import configparser
+
+
+def config_file_exists() -> bool:
+    import os
+    return os.path.exists("./config.ini")
 
 
 class Configuration:
@@ -21,9 +25,6 @@ class Configuration:
     @staticmethod
     def is_valid_nickname(self, nickname: str):
         return not nickname.isspace() and nickname != ""
-
-    def config_file_exists(self) -> bool:
-        return os.path.exists("./config.ini")
 
     def make_config_file(self):
         nickname = Configuration.ask_for_nickname()
