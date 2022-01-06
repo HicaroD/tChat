@@ -12,14 +12,14 @@ class TestTwitchChatParserMethods(unittest.TestCase):
         self.parser = Parser()
 
     def test_parser_for_nickname(self):
-        nickname, _ = self.parser.parse_message(
+        nickname, _ = self.parser.get_parsed_twitch_chat_data(
             ":hicaro____!hicaro____@hicaro____.tmi.twitch.tv PRIVMSG #hicaro____ :testing"
         )
         self.assertEqual(nickname, "hicaro____")
 
 
     def test_parser_for_user_message(self):
-        _, message = self.parser.parse_message(
+        _, message = self.parser.get_parsed_twitch_chat_data(
             ":hicaro____!hicaro____@hicaro____.tmi.twitch.tv PRIVMSG #hicaro____ :testing : testing message"
         )
 
