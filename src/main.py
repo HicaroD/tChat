@@ -68,12 +68,15 @@ class TwitchChat:
                 unparsed_twitch_chat_message = (
                     await self.client.get_data_from_irc_server_response()
                 )
+
                 decoded_twitch_chat_messages = (
                     unparsed_twitch_chat_message.decode().split("\n")[0]
                 )
 
                 user_text_color = self.customizer.select_color_for_text()
-                user, message = self.parser.parse_message(decoded_twitch_chat_messages)
+                user, message = self.parser.get_parsed_twitch_chat_data(
+                    decoded_twitch_chat_messages
+                )
 
                 if self.is_user_message(decoded_twitch_chat_messages):
                     self.make_beautiful_printing(user_text_color, user, message)
