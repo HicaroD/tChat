@@ -11,7 +11,7 @@ class Parser:
     def extract_data_from_irc_message(unparsed_irc_message: str):
         unparsed_nickname = unparsed_message = ""
 
-        if unparsed_irc_message[0] == ":":
+        if unparsed_irc_message.startswith(":"):
             unparsed_irc_message = unparsed_irc_message[1::]
 
             for character in unparsed_irc_message:
