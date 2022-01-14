@@ -50,6 +50,7 @@ class Client:
 
         except ConnectionError:
             print("Try again!")
+            exit()
 
     async def send_pong_to_server(self):
         await self.send_command_to_server("PONG", ":tmi.twitch.tv")
