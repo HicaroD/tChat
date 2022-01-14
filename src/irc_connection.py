@@ -45,7 +45,11 @@ class Client:
         await self.send_command_to_server("JOIN", channel_name)
 
     async def get_data_from_irc_server_response(self):
-        return self.irc.recv(Client.BUFFER_SIZE)
+        try:
+            return self.irc.recv(Client.BUFFER_SIZE)
+
+        except ConnectionError:
+            print("Try again!")
 
     async def send_pong_to_server(self):
         await self.send_command_to_server("PONG", ":tmi.twitch.tv")
