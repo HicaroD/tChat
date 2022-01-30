@@ -34,7 +34,7 @@ If it is your first time, you probably don't have a configuration file, therefor
 
 1. Blank nicknames
 
-Be careful with the colors of your terminal. Sometimes it's gonna look like that the nickname is blank, but it is not, actually. You can try changing your terminal color background and see what fits better for you.
+   Be careful with the colors of your terminal. Sometimes it's gonna look like that the nickname is blank, but it is not, actually. You can try changing your terminal color background and see what fits better for you.
 
 ## License
 [MIT](./LICENSE)
