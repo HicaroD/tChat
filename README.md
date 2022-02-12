@@ -14,17 +14,17 @@ git clone https://github.com/HicaroD/tChat.git
 
 ## Usage
 
-1. Go to the `tChat/src` folder where the main file is located
+1. Go to the `tChat/` folder where the main file is located
 ```bash
-cd tChat/src/
+cd tChat/
 ```
 
 2. Run the program
 ```bash
-python3 main.py -ch <name of the channel you want to join>
+python3 src/main.py -ch <name of the channel you want to join>
 ```
 
-For example: `python3 main.py -ch shroud` where `shroud` is a Twitch streamer and we want to join his chat using tChat.
+For example: `python3 src/main.py -ch shroud` where `shroud` is a Twitch streamer and we want to join his chat using tChat.
 
 If it is your first time, you probably don't have a configuration file, therefore the program will ask you two things: your Twitch nickname and your OAuth token.
 
