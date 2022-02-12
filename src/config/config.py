@@ -11,19 +11,19 @@ class Configuration:
         self.config = configparser.ConfigParser()
 
     @staticmethod
-    def ask_for_nickname(self):
+    def ask_for_nickname():
         return input("Insert your Twitch nickname: ")
 
     @staticmethod
-    def ask_for_oauth_token(self):
+    def ask_for_oauth_token():
         return input("Insert your Twitch OAuth Token:")
 
     @staticmethod
-    def is_a_valid_oauth_token(self, token: str) -> bool:
+    def is_a_valid_oauth_token(token: str) -> bool:
         return token.startswith("oauth:")
 
     @staticmethod
-    def is_valid_nickname(self, nickname: str):
+    def is_valid_nickname(nickname: str):
         return not nickname.isspace() and nickname != ""
 
     def make_config_file(self):
