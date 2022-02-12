@@ -10,5 +10,5 @@ class Customizer:
     def select_color_for_text(self):
         random_color_id = self.select_random_color_id()
         black_background_color = "\u001b[40;1m"
-        color = black_background_color + f"\033[38;5;{random_color_id}m"
+        color = f"\033[38;5;{random_color_id}m"
         return color
