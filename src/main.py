@@ -18,22 +18,23 @@ def get_channel_name_from_command_line():
     return channel_name
 
 
-class User:
+class BotConfiguration:
     def __init__(self):
         self.config = ConfigParser()
         self.config.read("config.ini")
 
-        self.nickname = self.config["IRC"]["nickname"]
-        self.oauth_token = self.config["IRC"]["oauth_token"]
+    # Configuration keys: "oauth_token" and "nickname"
+    def __getitem__(self, configuration_key):
+        return self.config["IRC"][configuration_key]
 
 
 class TwitchChat:
     ADDRESS = "irc.chat.twitch.tv"
     PORT = 6667
 
-    def __init__(self, user: User, channel: str):
+    def __init__(self, bot_configuration: BotConfiguration, channel: str):
         self.client = Client(TwitchChat.ADDRESS, TwitchChat.PORT)
-        self.user = user
+        self.bot_configuration = bot_configuration
         self.channel = "#" + channel
         self.parser = Parser()
         self.customizer = Customizer()
@@ -42,8 +43,11 @@ class TwitchChat:
         await self.client.join(self.channel)
 
     async def send_credentials_to_server(self):
-        await self.client.send_oauth_token_to_server(self.user.oauth_token)
-        await self.client.send_nick_to_server(self.user.nickname)
+        oauth_token = self.bot_configuration["oauth_token"]
+        bot_name = self.bot_configuration["nickname"]
+
+        await self.client.send_oauth_token_to_server(oauth_token)
+        await self.client.send_nick_to_server(bot_name)
 
     def make_beautiful_printing(self, color: str, nickname: str, message: str):
         print(f"{color}[{nickname}]{self.customizer.RESET_ANSI_CODE}", end=" ")
@@ -101,10 +105,10 @@ async def main():
     if not config_file_exists():
         configuration.make_config_file()
 
-    user = User()
+    bot_configuration = BotConfiguration()
     channel_name = get_channel_name_from_command_line()
 
-    chat = TwitchChat(user, channel_name)
+    chat = TwitchChat(bot_configuration, channel_name)
     await chat.run()
 
 
