@@ -38,6 +38,7 @@ class TwitchChat:
         self.channel = "#" + channel
         self.parser = Parser()
         self.customizer = Customizer()
+        self.users = {}
 
     async def join_channel(self):
         await self.client.join(self.channel)
@@ -62,6 +63,14 @@ class TwitchChat:
     def is_ping_message_from_server(self, message):
         return "PING" in message
 
+    def get_user_color(self, nickname):
+        if nickname in self.users.keys():
+            return self.users[nickname]
+        else:
+            random_color = self.customizer.select_color_for_text()
+            self.users[nickname] = random_color
+            return random_color
+
     async def run(self):
         try:
             await self.client.connect()
@@ -77,13 +86,14 @@ class TwitchChat:
                     unparsed_twitch_chat_message.decode().split("\n")[0]
                 )
 
-                user_text_color = self.customizer.select_color_for_text()
-                user, message = self.parser.get_parsed_twitch_chat_data(
+                nickname, message = self.parser.get_parsed_twitch_chat_data(
                     decoded_twitch_chat_messages
                 )
 
+                user_text_color = self.get_user_color(nickname)
+
                 if self.is_user_message(decoded_twitch_chat_messages):
-                    self.make_beautiful_printing(user_text_color, user, message)
+                    self.make_beautiful_printing(user_text_color, nickname, message)
 
                 elif self.is_connection_message(unparsed_twitch_chat_message):
                     self.make_beautiful_printing(
