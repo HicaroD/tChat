@@ -16,6 +16,7 @@ def is_internet_working():
 
     return False
 
+
 class Client:
     BUFFER_SIZE = 2040
 

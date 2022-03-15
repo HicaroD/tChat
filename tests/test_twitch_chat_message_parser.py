@@ -7,7 +7,6 @@ from chat_parser.twitch_message_parser import Parser
 
 
 class TestTwitchChatParserMethods(unittest.TestCase):
-
     def setUp(self):
         self.parser = Parser()
 
@@ -16,7 +15,6 @@ class TestTwitchChatParserMethods(unittest.TestCase):
             ":hicaro____!hicaro____@hicaro____.tmi.twitch.tv PRIVMSG #hicaro____ :testing"
         )
         self.assertEqual(nickname, "hicaro____")
-
 
     def test_parser_for_user_message(self):
         _, message = self.parser.get_parsed_twitch_chat_data(
