@@ -3,6 +3,7 @@ import configparser
 
 def config_file_exists() -> bool:
     import os
+
     return os.path.exists("./config.ini")
 
 
