@@ -8,21 +8,21 @@
 ## Installation
 
 1. Clone the repository
-```bash
-git clone https://github.com/HicaroD/tChat.git
-```
+    ```bash
+    git clone https://github.com/HicaroD/tChat.git
+    ```
 
 ## Usage
 
 1. Go to the `tChat/` folder where the main file is located
-```bash
-cd tChat/
-```
+    ```bash
+    cd tChat/
+    ```
 
 2. Run the program
-```bash
-python3 src/main.py -ch <name of the channel you want to join>
-```
+    ```bash
+    python3 src/main.py -ch <name of the channel you want to join>
+    ```
 
 For example: `python3 src/main.py -ch shroud` where `shroud` is a Twitch streamer and we want to join his chat using tChat.
 
