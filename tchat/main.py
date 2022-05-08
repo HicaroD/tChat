@@ -1,8 +1,8 @@
-from chat_parser.command_line_argument_parser import UserArgumentParser
+from command_line_argument_parser import UserArgumentParser
 from irc_connection import Client
-from chat_parser.twitch_message_parser import Parser
-from customizer.customizer import Customizer
-from config.config import Configuration, config_file_exists
+from twitch_message_parser import Parser
+from customizer import Customizer
+from config import Configuration, config_file_exists
 from configparser import ConfigParser
 import asyncio
 
@@ -120,6 +120,3 @@ async def main():
 
     chat = TwitchChat(bot_configuration, channel_name)
     await chat.run()
-
-
-asyncio.run(main())
