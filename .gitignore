@@ -2,8 +2,9 @@ src/.env
 src/env
 notes.txt
 
-src/config.ini
+tchat/config.ini
 
+tchat/config.ini
 tChat/__pycache__
 tChat/chat_parser/__pycache__/*
 tChat/customizer/__pycache__/*
@@ -11,4 +12,3 @@ tChat/config/__pycache__
 tests/__pycache__
 config/__pycache__
 __pycache__/
-
