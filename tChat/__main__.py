@@ -1,7 +1,5 @@
-from main import main
+from main import _main
 import asyncio
 
-print("Running on __main__.py")
-
 if __name__ == "__main__":
-    asyncio.run(main())
+    _main()

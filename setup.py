@@ -15,7 +15,7 @@ setup(
     packages=["tChat"],
     entry_points = {
         "console_scripts": [
-            "tChat = tChat.main:main",
+            "tChat = tChat.main:_main",
         ]
     },
 )
