@@ -12,9 +12,10 @@ setup(
     author_email="hdanrlley1@gmail.com",
     license="MIT License",
     url="http://pypi.python.org/pypi/tChat/",
+    packages=["tChat"],
     entry_points = {
         "console_scripts": [
-            "tchat = tchat.main:main",
+            "tChat = tChat.main:main",
         ]
     },
 )
