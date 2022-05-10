@@ -11,7 +11,7 @@ setup(
     author="Hícaro",
     author_email="hdanrlley1@gmail.com",
     license="MIT License",
-    url="http://pypi.python.org/pypi/tChat/",
+    url="https://github.com/HicaroD/tChat",
     packages=["tChat"],
     entry_points = {
         "console_scripts": [
