@@ -13,3 +13,7 @@ tests/__pycache__
 config/__pycache__
 __pycache__/
 env/
+
+build/
+dist/
+tChat.egg-info/
