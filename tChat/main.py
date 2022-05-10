@@ -121,5 +121,8 @@ async def main():
     chat = TwitchChat(bot_configuration, channel_name)
     await chat.run()
 
-if __name__ == "__main__":
+def _main():
     asyncio.run(main())
+
+if __name__ == "__main__":
+    _main()
