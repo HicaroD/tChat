@@ -17,7 +17,7 @@ pip install tChat
 tChat -ch <channel name>
 ```
 
-For example: `python3 src/main.py -ch shroud` where `shroud` is a Twitch streamer and we want to join his chat using tChat.
+For example: `tChat -ch shroud` where `shroud` is a Twitch streamer and we want to join his chat using tChat.
 
 If it is your first time, you probably don't have a configuration file, therefore the program will ask you two things: your Twitch nickname and your OAuth token.
 
